@@ -27,7 +27,7 @@ class Listing extends Model
         'cinema_available',
     ];
 
-    protected $cast = [
+    protected $casts = [
         'attachments' => 'array',
     ];
 
