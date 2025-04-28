@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Transaction extends Model
 {
@@ -35,4 +36,25 @@ class Transaction extends Model
         $this->attributes['fee'] = $fee;
         $this->attributes['total_price'] = $totalPrice + $fee;
     }
+
+    /**
+     * The user that this transaction belongs to.
+     *
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * The listing that this transaction belongs to.
+     *
+     * @return BelongsTo
+     */
+    public function listing(): BelongsTo
+    {
+        return $this->belongsTo(Listing::class);
+    }
+
 }
