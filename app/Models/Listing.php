@@ -44,11 +44,11 @@ class Listing extends Model
     }
 
     /**
-     * Get all of the listing's transactions.
+     * Get all of the listing's transaction.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function transactions(): HasMany
+    public function transaction(): HasMany
     {
         return $this->hasMany(Transaction::class);
     }
