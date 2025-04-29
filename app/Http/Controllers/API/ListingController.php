@@ -15,7 +15,17 @@ class ListingController extends Controller
 
         return response()->json([
             'success' => true,
+            'message' => 'Get All listing',
             'data' => $listings,
+        ]);
+    }
+
+    public function show(Listing $listing): JsonResponse
+    {
+        return response()->json([
+            'success'=> true,
+            'message'=> 'Get detail listing',
+            'data'=> $listing,
         ]);
     }
 }
