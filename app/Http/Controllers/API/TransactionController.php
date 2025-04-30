@@ -28,8 +28,9 @@ class TransactionController extends Controller
                     $subquery->where('start_date', '<', $request->start_date)
                         ->where('end_date', '>', $request->end_date);
                 });
-            });
-        if ($runningTransactionCount > $listing->max_person) {
+            })->count();
+
+        if ($runningTransactionCount >= $listing->max_person) {
             throw new HttpResponseException(
                 response()->json([
                     'success' => false,
@@ -39,5 +40,15 @@ class TransactionController extends Controller
         }
 
         return true;
+    }
+
+    public function isAvailable(Store $request)
+    {
+        $this->_fullyBookedChecker($request);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Listing is ready to book',
+        ]);
     }
 }
