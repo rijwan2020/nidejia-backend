@@ -12,6 +12,17 @@ use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
+    public function index(Request $request)
+    {
+        $transactions = Transaction::with('listing')->whereUserId(auth()->id())->paginate();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Get all transaction',
+            'data' => $transactions,
+        ]);
+    }
+
     private function _fullyBookedChecker(Store $request)
     {
         $listing = Listing::find($request->listing_id);
