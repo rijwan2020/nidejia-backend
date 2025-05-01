@@ -15,6 +15,6 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 Route::resource('listing', ListingController::class)->only(['index', 'show']);
 
 Route::post('transaction/is-available', [TransactionController::class,'isAvailable'])->middleware(['auth:sanctum']);
-Route::resource('transaction', TransactionController::class)->only(['index', 'store'])->middleware(['auth:sanctum']);
+Route::resource('transaction', TransactionController::class)->only(['index', 'store', 'show'])->middleware(['auth:sanctum']);
 
 require __DIR__.'/auth.php';
